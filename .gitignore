@@ -3,17 +3,8 @@
 ### Example user template
 
 # IntelliJ project files
-.idea
+*.idea
 target
 *.iml
 out
 gen
-.idea/dataSources.local.xml
-.idea/inspectionProfiles/
-.idea/workspace.xml
-database/target/
-service/target/
-target/
-web/target/
-/playgroundOnSpringData.iml
-/web/web.iml
