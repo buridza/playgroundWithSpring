@@ -7,6 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
     <title>Title</title>

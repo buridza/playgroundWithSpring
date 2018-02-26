@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface GameRepository extends PagingAndSortingRepository<Game, Long>, JpaRepository<Game, Long> {
-    Page<Game> findGamesByNameContainsAndCostAfterAndAgeRestrictionsAfterAndLanguage(String name, int cost, int ageRest, Language language, Pageable pageable);
+    Page<Game> findGamesByNameContainsAndCostBeforeAndAgeRestrictionsAfterAndLanguage(String name, int cost, int ageRest, Language language, Pageable pageable);
     Page<Game> findGamesByNameContainsAndCostBeforeAndAgeRestrictionsAfter(String name, int cost, int ageRest, Pageable pageable);
 }
