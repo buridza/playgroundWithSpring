@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @PostMapping("edit")
-    public String edit(User user) {
+    public String edit(@ModelAttribute User user) {
         userService.saveUserByUserName(SecurityContextHolder.getContext().getAuthentication().getName(), user);
         return "auth/UserPage";
     }

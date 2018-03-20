@@ -6,17 +6,28 @@
 </head>
 <body>
     <form th:action="@{/registration}" method="post" th:object="${accountUser}">
-        <input type="text" th:field="*{name}"><br>
-        <input type="text" th:field="*{login}"><br>
-        <input type="password" th:field="*{password}"><br>
-        <input type="email" th:field="*{email}"><br>
+        <label for="name">Name</label>
+        <input id="name" type="text" th:field="*{name}"><br>
+        <label for="login">login</label>
+        <input id="login" type="text" th:field="*{login}"><br>
+        <label for="password">password</label>
+        <input id="password"type="password" th:field="*{password}"><br>
+        <label for="email">email</label>
+        <input id="email" type="email" th:field="*{email}"><br>
+        <label for="name">Name</label>
        <!-- <input type="datetime-local" th:field="*{dateOfBirthday}"><br>-->
-        <input type="date" name="date"><br>
-        <input type="text" th:field="*{address.city}"><br>
-        <input type="text" th:field="*{address.street}"><br>
-        <input type="number" th:field="*{address.apartment}"><br>
-        <input type="number" th:field="*{address.house}"><br>
-        <select th:field="*{language}">
+        <label for="date">date</label>
+        <input id="date" type="date" name="date"><br>
+        <label for="city">city</label>
+        <input id="city" type="text" th:field="*{address.city}"><br>
+        <label for="street">street</label>
+        <input id="street" type="text" th:field="*{address.street}"><br>
+        <label for="apartment">apartment</label>
+        <input id="apartment" type="number" th:field="*{address.apartment}"><br>
+        <label for="house">house</label>
+        <input id="house" type="number" th:field="*{address.house}"><br>
+        <label for="language">language</label>
+        <select id="language" th:field="*{language}">
             <option  th:each=" lang : ${languageList}"
                      th:text="${lang}"
                      th:value="${lang}"></option>
