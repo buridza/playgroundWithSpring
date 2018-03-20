@@ -8,5 +8,3 @@ target
 *.iml
 out
 gen
-*.properties
-*.java

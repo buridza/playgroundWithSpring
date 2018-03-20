@@ -4,6 +4,7 @@ import by.itacademy.entity.account.user.Language;
 import by.itacademy.entity.game.Game;
 import by.itacademy.impl.Filter;
 import org.springframework.data.domain.Page;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 

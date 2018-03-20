@@ -21,9 +21,9 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping("userConfigurePage")
     public String toUserConfig(@ModelAttribute User user) {
+        System.out.println("userConfigurePage");
         user.setDateOfBirthday(LocalDate.parse(user.getDateOfBirthday().toString()));
         return "auth/userConfigurePage";
     }
@@ -40,13 +40,18 @@ public class UserController {
     }
 
     @GetMapping("edit")
-    public String toEdit() {
-        return "auth/UserPage";
+    public String toEdit(Model model, User user) {
+        model.addAttribute("user", user);
+        return "auth/userConfigurePage";
     }
 
-    @PostMapping("edit")
-    public String edit(@ModelAttribute User user) {
-        userService.saveUserByUserName(SecurityContextHolder.getContext().getAuthentication().getName(), user);
+    @PostMapping("edit/{id}")
+    public String edit(User user, @PathVariable Long id) {
+
+        System.out.println("i'm here");
+        //User name = userService.saveUserByUserName(SecurityContextHolder.getContext().getAuthentication().getName(), user);
+        User name = userService.updateUserById(user, id);
+        System.out.println(name);
         return "auth/UserPage";
     }
 

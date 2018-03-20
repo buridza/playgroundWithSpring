@@ -48,7 +48,7 @@ public class RegistrationController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setDateOfBirthday(LocalDate.parse(date));
             model.addAttribute("user", userService.registerNewUser(user));
-            return "Login";
+            return "login";
         } catch (NotUniqueException exception) {
             model.addAttribute("error", exception.getMessage());
             return "redirect:/registration";
