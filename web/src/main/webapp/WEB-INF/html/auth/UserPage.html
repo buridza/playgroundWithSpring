@@ -21,7 +21,7 @@
 <ul th:each="game: ${user.games}">
     <li th:text="${game.name}"></li>
 </ul>
-<form action="/userConfigurePage" method="get">
+<form action="/edit" method="get">
     <input type="hidden" th:object="${user}">
     <button type="submit">Изменить</button>
 </form>
