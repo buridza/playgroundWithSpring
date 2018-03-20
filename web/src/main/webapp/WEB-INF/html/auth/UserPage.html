@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.name}"></title>
+</head>
+<body>
+
+<p th:text="${user.name}"></p>
+<p th:text="${user.login}"></p>
+<p th:text="${user.dateOfBirthday}"></p>
+<p th:text="${user.address.city}"></p>
+<p th:text="${user.address.house}"></p>
+<p th:text="${user.address.street}"></p>
+<p th:text="${user.address.apartment}"></p>
+<p th:text="${user.email}"></p>
+<ul th:each="game: ${user.games}">
+    <li th:text="${game.name}"></li>
+</ul>
+<form action="/userConfigurePage" method="get">
+    <input type="hidden" th:object="${user}">
+    <button type="submit">Изменить</button>
+</form>
+
+</body>
+</html>

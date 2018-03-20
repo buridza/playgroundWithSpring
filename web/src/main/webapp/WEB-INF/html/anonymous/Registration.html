@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+    <form th:action="@{/registration}" method="post" th:object="${accountUser}">
+        <input type="text" th:field="*{name}"><br>
+        <input type="text" th:field="*{login}"><br>
+        <input type="password" th:field="*{password}"><br>
+        <input type="email" th:field="*{email}"><br>
+       <!-- <input type="datetime-local" th:field="*{dateOfBirthday}"><br>-->
+        <input type="date" name="date"><br>
+        <input type="text" th:field="*{address.city}"><br>
+        <input type="text" th:field="*{address.street}"><br>
+        <input type="number" th:field="*{address.apartment}"><br>
+        <input type="number" th:field="*{address.house}"><br>
+        <select th:field="*{language}">
+            <option  th:each=" lang : ${languageList}"
+                     th:text="${lang}"
+                     th:value="${lang}"></option>
+        </select><br>
+        <button type="submit">Registration</button>
+    </form>
+</body>
+</html>

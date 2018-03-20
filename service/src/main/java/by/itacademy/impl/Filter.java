@@ -1,4 +1,4 @@
-package by.itacademy;
+package by.itacademy.impl;
 
 import by.itacademy.entity.account.user.Language;
 import lombok.Data;
@@ -11,5 +11,4 @@ public class Filter {
     private int cost = Integer.MAX_VALUE;
     private int numberOfRows = 1;
     private int nextPage;
-
 }

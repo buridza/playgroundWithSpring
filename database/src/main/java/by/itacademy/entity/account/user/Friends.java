@@ -20,7 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "friends")
 public class Friends extends BaseEntity {
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<User> friend = new HashSet<>();
    /* @ManyToMany
     @JoinTable(

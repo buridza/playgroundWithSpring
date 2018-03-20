@@ -22,10 +22,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "purchase")
 public class Purchase extends BaseEntity {
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id")
     private Game game;
     @Column(name = "date", nullable = false)

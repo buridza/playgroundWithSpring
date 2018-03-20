@@ -23,12 +23,15 @@ import javax.persistence.Table;
 public class Comment extends BaseEntity {
     @Column(name = "rating", nullable = false)
     private int rating;
+
     @Column(name = "message")
     private String message;
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "name")
     private Game game;
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 }

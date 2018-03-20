@@ -1,7 +1,10 @@
 package by.itacademy.repository;
 
 import by.itacademy.entity.Purchase;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PurchaseRepository extends PagingAndSortingRepository<Purchase, Long> {
+import java.util.List;
+
+public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
+    List<Purchase> findPurchasesByPaymentStatus(boolean status);
 }

@@ -2,6 +2,7 @@ package by.itacademy.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -31,6 +32,11 @@ public class ThymeleafConfig {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
         resolver.setCharacterEncoding("UTF-8");
+        resolver.setContentType("text/html; charset=UTF-8");
         return resolver;
+    }
+    @Bean
+    public CharacterEncodingFilter characterEncodingFilter() {
+        return new CharacterEncodingFilter("UTF-8");
     }
 }
