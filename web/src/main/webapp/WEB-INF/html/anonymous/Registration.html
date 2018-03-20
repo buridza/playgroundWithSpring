@@ -3,40 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap-reboot.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap-grid.css.map">
+    <script src="resources/js/bootstrap.js"></script>
+    <script src="resources/js/bootstrap.bundle.js"></script>
+    <script src="resources/js/bootstrap.bundle.js.map"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-    <form th:action="@{/registration}" method="post" th:object="${accountUser}">
-        <label for="name">Name</label>
-        <input id="name" type="text" th:field="*{name}"><br>
-        <label for="login">login</label>
-        <input id="login" type="text" th:field="*{login}"><br>
-        <label for="password">password</label>
-        <input id="password"type="password" th:field="*{password}"><br>
-        <label for="email">email</label>
-        <input id="email" type="email" th:field="*{email}"><br>
-        <label for="name">Name</label>
-       <!-- <input type="datetime-local" th:field="*{dateOfBirthday}"><br>-->
-        <label for="date">date</label>
-        <input id="date" type="date" name="date"><br>
-        <label for="city">city</label>
-        <input id="city" type="text" th:field="*{address.city}"><br>
-        <label for="street">street</label>
-        <input id="street" type="text" th:field="*{address.street}"><br>
-        <label for="apartment">apartment</label>
-        <input id="apartment" type="number" th:field="*{address.apartment}"><br>
-        <label for="house">house</label>
-        <input id="house" type="number" th:field="*{address.house}"><br>
-        <label for="language">language</label>
-        <select id="language" th:field="*{language}">
-            <option  th:each=" lang : ${languageList}"
-                     th:text="${lang}"
-                     th:value="${lang}"></option>
-        </select><br>
-        <button type="submit">Registration</button>
+<div class="container">
+
+    <form th:action="@{/registration}" class="form-horizontal" role="form" method="POST" th:object="${accountUser}">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2>Регистрация нового пользователя</h2>
+                <hr>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">Имя</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user-circle"></i></div>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Марат" required autofocus th:field="*{name}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="login">Логин</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input type="text" name="name" class="form-control" id="login" placeholder="Введите логин" required autofocus th:field="*{login}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">Пароль</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Введите пароль" required th:field="*{password}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="email">Электронная почта</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" name="email" class="form-control" id="email" placeholder="example@example.com" required autofocus th:field="*{email}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="date">Дата рождения</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-calendar"></i></div>
+                        <input type="date" name="date" class="form-control" id="date" placeholder="Дата рождения" required autofocus">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="city">Город</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-building"></i></div>
+                        <input type="text" name="city" class="form-control" id="city" placeholder="Введите город" required autofocus th:field="*{address.city}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="street">Улица</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-map-signs"></i></div>
+                        <input type="text" name="street" class="form-control" id="street" placeholder="Введите улицу" required autofocus th:field="*{address.street}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="house">Дом</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-home"></i></div>
+                        <input type="number" name="house" class="form-control" id="house" placeholder="Номер дома" required autofocus th:field="*{address.house}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="apartment">Квартира</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-home"></i></div>
+                        <input type="number" name="apartment" class="form-control" id="apartment" placeholder="0, если частный дом" required autofocus th:field="*{address.apartment}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="language">Язык</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-language"></i></div>
+                        <select id="language" th:field="*{language}" name="language" class="form-control" placeholder="Выберите язык" required autofocus>
+                            <option  th:each=" lang : ${languageList}"
+                                     th:text="${lang}"
+                                     th:value="${lang}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i>Зарегистрироваться</button>
+            </div>
+        </div>
     </form>
+</div>
+
+
+
 </body>
 </html>

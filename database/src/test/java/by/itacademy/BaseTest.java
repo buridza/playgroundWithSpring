@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = PersistenceConfig.class)
-@Transactional
+//@Transactional
 public class BaseTest {
     @Test
     public void nothing() {
