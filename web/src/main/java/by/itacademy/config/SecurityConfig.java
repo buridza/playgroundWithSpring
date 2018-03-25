@@ -1,9 +1,12 @@
 package by.itacademy.config;
 
+import by.itacademy.aspect.Log;
 import by.itacademy.impl.UserServiceImpl;
+import by.itacademy.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,12 +19,13 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 @Configuration
 @EnableWebSecurity
+@EnableAspectJAutoProxy
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserServiceImpl userServiceImpl;
+    private final UserService userServiceImpl;
 
     @Autowired
-    public SecurityConfig(UserServiceImpl userServiceImpl) {
+    public SecurityConfig(UserService userServiceImpl) {
         this.userServiceImpl = userServiceImpl;
     }
 
@@ -31,15 +35,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
-        http.addFilterAfter(filter, CsrfFilter.class);
+        //http.addFilterAfter(filter, CsrfFilter.class);
         http.addFilterBefore(filter, CsrfFilter.class);
 
         http
                 .authorizeRequests()
+                .antMatchers("/Login").anonymous()
+                .antMatchers("/Admin").hasAuthority("MODERATOR")
                 .antMatchers("/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/Login")
+                .loginProcessingUrl("/customUrl")
+                .defaultSuccessUrl("/UserPage", true)
+                .usernameParameter("login")
+                .passwordParameter("pass")
                 .and()
                 .userDetailsService(userServiceImpl);
 
@@ -48,7 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/firstPage")
                 .invalidateHttpSession(true)
-                .deleteCookies();
+                .deleteCookies()
+                .and()
+                .csrf().disable();
     }
 
     @Override
@@ -68,4 +81,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }

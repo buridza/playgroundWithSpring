@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:fragment="enableBoot">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </th:block>
+
+</head>
+<body>
+<div th:fragment="header" th:align="center">
+    <nav>
+        <ul>
+            <!--!#strings.equalsIgnoreCase(#authentication.principal,'ROLE_ANONYMOUS')-->
+            <li th:if="${#authorization.expression('isAuthenticated()')}">
+                <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
+                </a>
+                <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+            </li>
+            <li th:if="${#authorization.expression('isAuthenticated()')}">
+                <a href="UserPage">Личный кабинет</a>
+            </li>
+            <li>
+                <a href="firstPage">Игры</a>
+            </li>
+            <li>
+                <a href="ProviderPage">Поставщики</a>
+            </li>
+            <li th:if="${#strings.equalsIgnoreCase(#authorization.authentication.authorities, 'MODERATOR')}">
+                <a href="Purchase">Заказы</a>
+            </li>
+            <li th:if="${#strings.equalsIgnoreCase(#authorization.authentication.authorities, 'MODERATOR')}">
+                <a href="Admin">Админка</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+</body>
+</html>

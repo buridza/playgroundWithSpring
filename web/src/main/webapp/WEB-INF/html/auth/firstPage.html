@@ -3,22 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>First Page</title>
-    <!--<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-grid.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap-reboot.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/bootstrap-grid.css.map">
-    <script src="resources/js/bootstrap.js"></script>
-    <script src="resources/js/bootstrap.bundle.js"></script>
-    <script src="resources/js/bootstrap.bundle.js.map"></script>-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <form th:action="@{logout}" method="post">
-        <button type="submit">Выйти</button>
-    </form>
+    <th:block th:replace="fragments/header :: enableBoot"/>
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 <div class="container">
     <form id="filter" action="/filter" method="get" th:object="${filter}">
         <div class="form-row">
@@ -52,7 +40,7 @@
             <p><input class="btn btn-success" type="submit" value="Фильтрация"></p>
         </div>
         <label for="numberOfRows">Количество записей:</label>
-        <input name="numberOfRows" type="number" min="5" max="50" step="5" id="numberOfRows"
+        <input name="numberOfRows" type="number" min="1" max="50" step="1" id="numberOfRows"
                th:field="*{numberOfRows}" th:value="*{numberOfRows}">
 
         <button th:if="${games.hasPrevious()}"

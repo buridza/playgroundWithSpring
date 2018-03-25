@@ -3,23 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Purchase</title>
-    <link rel="stylesheet" type="text/css" href="../anonymous/resources/css/bootstrap-grid.css">
-    <link rel="stylesheet" type="text/css" href="../anonymous/resources/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../anonymous/resources/css/bootstrap-reboot.css">
-    <link rel="stylesheet" type="text/css" href="../anonymous/resources/css/bootstrap-grid.css.map">
-    <script src="../anonymous/resources/js/bootstrap.js"></script>
-    <script src="../anonymous/resources/js/bootstrap.bundle.js"></script>
-    <script src="../anonymous/resources/js/bootstrap.bundle.js.map"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <form th:action="@{logout}" method="post">
-        <button type="submit">Выйти</button>
-    </form>
+    <th:block th:replace="fragments/header :: enableBoot"/>
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 <div class="container">
 <table class="table table-bordered text-center table-hover" style="margin-top: 15%">
     <tr>
@@ -42,7 +29,7 @@
 
     </tr>
 </table>
-<form  class="form" action="/paymentConfirmation" method="post">
+<form class="form" action="UserPage" method="post">
     <input type="hidden" th:value="${game.id}" name="id">
     <input  type = "hidden"
             th:name = "${_csrf.parameterName}"

@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <th:block th:replace="fragments/header :: enableBoot"/>
 </head>
 <body>
-<form th:action="@{/Login}" method="post">
+<div th:replace="fragments/header :: header"></div>
+1<ul th:each="err : ${#fields.allErrors()}">
+    <li th:value="err"></li>
+</ul>
+2<ul th:each="err : ${#fields.errors('*')}">
+    <li th:value="${err}"></li>
+</ul>
+<span th:text="${#fields.allErrors()}"></span>
+<form th:action="@{/customUrl}" method="post">
 
     <label th:for="login">Логин</label>
-    <input id="login" type="text" name="login" required>
+    <input id="login" type="text" name="login" required><br>
     <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
+    <input type="password" id="password" name="pass" required>
     <button type="submit">Войти</button>
+    <input  type = "hidden"
+            th:name = "${_csrf.parameterName}"
+            th:value = "${_csrf.token}" />
+
 
 </form>
 
