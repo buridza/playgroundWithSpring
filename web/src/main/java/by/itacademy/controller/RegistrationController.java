@@ -1,6 +1,6 @@
 package by.itacademy.controller;
 
-import by.itacademy.UserService;
+import by.itacademy.interfaces.UserService;
 import by.itacademy.entity.account.user.Language;
 import by.itacademy.exception.NotUniqueException;
 import by.itacademy.impl.AccountUser;

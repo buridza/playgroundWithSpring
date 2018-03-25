@@ -1,6 +1,6 @@
 package by.itacademy.controller;
 
-import by.itacademy.ProviderService;
+import by.itacademy.interfaces.ProviderService;
 import by.itacademy.entity.account.provider.Provider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class ProviderController {
     public Provider provider() {
         return new Provider();
     }
-    @RequestMapping("providerPage")
+    @RequestMapping("ProviderPage")
     public String providerAbout() {
 
         return "auth/ProviderPage";

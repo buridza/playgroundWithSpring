@@ -1,13 +1,10 @@
 package by.itacademy.controller;
 
-import by.itacademy.GameService;
-import by.itacademy.UserService;
-import by.itacademy.entity.account.user.User;
+import by.itacademy.interfaces.GameService;
+import by.itacademy.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,6 +24,10 @@ public class PurchaseController {
         this.userService = userService;
     }
 
+    @RequestMapping("Purchase")
+    public String showPage() {
+        return "/auth/Purchase";
+    }
     @RequestMapping("createOrder")
     public String createOrder(@RequestParam Long id, Model model) {
         //model.addAttribute("game", game);
