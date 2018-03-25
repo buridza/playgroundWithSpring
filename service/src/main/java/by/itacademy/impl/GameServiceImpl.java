@@ -2,6 +2,7 @@ package by.itacademy.impl;
 
 import by.itacademy.entity.account.user.Language;
 import by.itacademy.entity.game.Game;
+import by.itacademy.interfaces.GameService;
 import by.itacademy.repository.GameRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.io.Serializable;
 @Service
 @Transactional
 @NoArgsConstructor
-public class GameServiceImpl implements by.itacademy.GameService{
+public class GameServiceImpl implements GameService {
 
     private GameRepository gameRepository;
 

@@ -1,0 +1,141 @@
+smth wrong
+Rendered criteria query -> select generatedAlias0 from User as generatedAlias0 where generatedAlias0.login=:param0
+QueryTranslatorFactory : org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@51d719bc
+HHH000397: Using ASTQueryTranslatorFactory
+parse() - HQL: select generatedAlias0 from by.itacademy.entity.account.user.User as generatedAlias0 where generatedAlias0.login=:param0
+weakKeywords() : new LT(1) token - ["by",<108> previously: <109>,line=1,col=29,possibleID=true]
+--- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  +-[FROM] Node: 'from'
+    |  |  \-[RANGE] Node: 'RANGE'
+    |  |     +-[DOT] Node: '.'
+    |  |     |  +-[DOT] Node: '.'
+    |  |     |  |  +-[DOT] Node: '.'
+    |  |     |  |  |  +-[DOT] Node: '.'
+    |  |     |  |  |  |  +-[DOT] Node: '.'
+    |  |     |  |  |  |  |  +-[IDENT] Node: 'by'
+    |  |     |  |  |  |  |  \-[IDENT] Node: 'itacademy'
+    |  |     |  |  |  |  \-[IDENT] Node: 'entity'
+    |  |     |  |  |  \-[IDENT] Node: 'account'
+    |  |     |  |  \-[IDENT] Node: 'user'
+    |  |     |  \-[IDENT] Node: 'User'
+    |  |     \-[ALIAS] Node: 'generatedAlias0'
+    |  \-[SELECT] Node: 'select'
+    |     \-[IDENT] Node: 'generatedAlias0'
+    \-[WHERE] Node: 'where'
+       \-[EQ] Node: '='
+          +-[DOT] Node: '.'
+          |  +-[IDENT] Node: 'generatedAlias0'
+          |  \-[IDENT] Node: 'login'
+          \-[COLON] Node: ':'
+             \-[IDENT] Node: 'param0'
+
+throwQueryException() : no errors
+select << begin [level=1, statement=select]
+FromClause{level=1} : by.itacademy.entity.account.user.User (generatedAlias0) -> user0_
+Resolved : generatedAlias0 -> user0_.id
+Resolved : generatedAlias0 -> user0_.id
+getDataType() : login -> org.hibernate.type.StringType@3f6db3fb
+Resolved : generatedAlias0.login -> user0_1_.login
+select : finishing up [level=1, statement=select]
+processQuery() :  ( SELECT ( {select clause} user0_.id ) ( FromClause{level=1} User user0_ ) ( where ( = ( user0_1_.login user0_.id login ) ? ) ) )
+Using FROM fragment [User user0_ inner join account user0_1_ on user0_.id=user0_1_.id]
+select >> end [level=1, statement=select]
+--- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (User,account)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'user0_.id as id1_0_' {alias=generatedAlias0, className=by.itacademy.entity.account.user.User, tableAlias=user0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'user0_1_.apartment as apartmen2_0_, user0_1_.city as city3_0_, user0_1_.house as house4_0_, user0_1_.street as street5_0_, user0_1_.email as email6_0_, user0_1_.login as login7_0_, user0_1_.name as name8_0_, user0_1_.password as password9_0_, user0_.date as date1_7_, user0_.friend_id as friend_i5_7_, user0_.language as language2_7_, user0_.role as role3_7_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[user0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'User user0_ inner join account user0_1_ on user0_.id=user0_1_.id' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=User,tableAlias=user0_,origin=null,columns={,className=by.itacademy.entity.account.user.User}}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'user0_1_.login' {propertyName=login,dereferenceType=PRIMITIVE,getPropertyPath=login,path=generatedAlias0.login,tableAlias=user0_,className=by.itacademy.entity.account.user.User,classAlias=generatedAlias0}
+          |  +-[ALIAS_REF] IdentNode: 'user0_.id' {alias=generatedAlias0, className=by.itacademy.entity.account.user.User, tableAlias=user0_}
+          |  \-[IDENT] IdentNode: 'login' {originalText=login}
+          \-[NAMED_PARAM] ParameterNode: '?' {name=param0, expectedType=org.hibernate.type.StringType@3f6db3fb}
+
+throwQueryException() : no errors
+HQL: select generatedAlias0 from by.itacademy.entity.account.user.User as generatedAlias0 where generatedAlias0.login=:param0
+SQL: select user0_.id as id1_0_, user0_1_.apartment as apartmen2_0_, user0_1_.city as city3_0_, user0_1_.house as house4_0_, user0_1_.street as street5_0_, user0_1_.email as email6_0_, user0_1_.login as login7_0_, user0_1_.name as name8_0_, user0_1_.password as password9_0_, user0_.date as date1_7_, user0_.friend_id as friend_i5_7_, user0_.language as language2_7_, user0_.role as role3_7_ from User user0_ inner join account user0_1_ on user0_.id=user0_1_.id where user0_1_.login=?
+throwQueryException() : no errors
+
+    select
+        user0_.id as id1_0_,
+        user0_1_.apartment as apartmen2_0_,
+        user0_1_.city as city3_0_,
+        user0_1_.house as house4_0_,
+        user0_1_.street as street5_0_,
+        user0_1_.email as email6_0_,
+        user0_1_.login as login7_0_,
+        user0_1_.name as name8_0_,
+        user0_1_.password as password9_0_,
+        user0_.date as date1_7_,
+        user0_.friend_id as friend_i5_7_,
+        user0_.language as language2_7_,
+        user0_.role as role3_7_ 
+    from
+        User user0_ 
+    inner join
+        account user0_1_ 
+            on user0_.id=user0_1_.id 
+    where
+        user0_1_.login=?
+Result set row: 0
+Result row: EntityKey[by.itacademy.entity.account.user.User#239]
+Resolving associations for [by.itacademy.entity.account.user.User#239]
+Done materializing entity [by.itacademy.entity.account.user.User#239]
+Loading collection: [by.itacademy.entity.account.user.User.games#239]
+
+    select
+        games0_.user_id as user_id9_4_0_,
+        games0_.id as id1_4_0_,
+        games0_.id as id1_4_1_,
+        games0_.age_restrictions as age_rest2_4_1_,
+        games0_.cost as cost3_4_1_,
+        games0_.language as language4_4_1_,
+        games0_.name as name5_4_1_,
+        games0_.numberOfPlayers as numberOf6_4_1_,
+        games0_.game_id as game_id8_4_1_,
+        games0_.rules as rules7_4_1_,
+        provider1_.id as id1_0_2_,
+        provider1_1_.apartment as apartmen2_0_2_,
+        provider1_1_.city as city3_0_2_,
+        provider1_1_.house as house4_0_2_,
+        provider1_1_.street as street5_0_2_,
+        provider1_1_.email as email6_0_2_,
+        provider1_1_.login as login7_0_2_,
+        provider1_1_.name as name8_0_2_,
+        provider1_1_.password as password9_0_2_,
+        provider1_.interbranchTurnover as interbra1_5_2_,
+        provider1_.paymentAccount as paymentA2_5_2_,
+        provider1_.receiver as receiver3_5_2_,
+        provider1_.taxpayerIdentificationNumber as taxpayer4_5_2_ 
+    from
+        game games0_ 
+    left outer join
+        Provider provider1_ 
+            on games0_.game_id=provider1_.id 
+    left outer join
+        account provider1_1_ 
+            on provider1_.id=provider1_1_.id 
+    where
+        games0_.user_id=?
+Preparing collection intializer : [by.itacademy.entity.account.user.User.games#239]
+Starting ResultSet row #0
+Found row of collection: [by.itacademy.entity.account.user.User.games#239]
+Resolving associations for [by.itacademy.entity.game.Game#1]
+Done materializing entity [by.itacademy.entity.game.Game#1]
+Resolving associations for [by.itacademy.entity.account.provider.Provider#1]
+Done materializing entity [by.itacademy.entity.account.provider.Provider#1]
+1 collections were found in result set for role: by.itacademy.entity.account.user.User.games
+Collection fully initialized: [by.itacademy.entity.account.user.User.games#239]
+1 collections initialized for role: by.itacademy.entity.account.user.User.games
+HHH000387: ResultSet's statement was not registered
+Done loading collection
+rolling back
+HHH000031: Closing
+External cascade style regsitration [persist : STYLE_PERSIST] overrode base registration [STYLE_PERSIST_SKIPLAZY]
+Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries

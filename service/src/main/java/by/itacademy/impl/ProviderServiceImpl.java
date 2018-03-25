@@ -1,6 +1,6 @@
 package by.itacademy.impl;
 
-import by.itacademy.ProviderService;
+import by.itacademy.interfaces.ProviderService;
 import by.itacademy.entity.account.provider.Provider;
 import by.itacademy.repository.ProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

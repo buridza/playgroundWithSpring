@@ -1,6 +1,6 @@
 package by.itacademy.impl;
 
-import by.itacademy.UserService;
+import by.itacademy.interfaces.UserService;
 import by.itacademy.exception.NotUniqueException;
 import by.itacademy.repository.GameRepository;
 import by.itacademy.repository.UserRepository;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ConstraintViolationException;
 import java.io.Serializable;
-import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -22,7 +21,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,8 +40,9 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("User doesn't exist!");
         }
 
-        return new User(user.getLogin(), user.getPassword(),
+        User user1 = new User(user.getLogin(), user.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority(user.getRole().toString())));
+        return user1;
     }
 
     @Override

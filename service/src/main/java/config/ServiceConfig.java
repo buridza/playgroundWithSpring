@@ -1,12 +1,20 @@
 package config;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+
+import by.itacademy.aspect.Log;
+import by.itacademy.config.PersistenceConfig;
+import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Service;
 
 @Configuration
 @Service
 @ComponentScan(basePackages = "by.itacademy.impl")
-//@Import(value = PersistenceConfig.class)
+@EnableAspectJAutoProxy
+@Import(value = PersistenceConfig.class)
 public class ServiceConfig {
+    @Bean
+    public Log loger() {
+        return new Log();
+    }
+
 }

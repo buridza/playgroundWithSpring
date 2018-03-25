@@ -1,4 +1,4 @@
-package by.itacademy;
+package by.itacademy.interfaces;
 
 import by.itacademy.entity.account.user.User;
 import by.itacademy.exception.NotUniqueException;
