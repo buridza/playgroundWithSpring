@@ -31,9 +31,9 @@ public class LoginController {
         return "Login";
     }
 
-    @PostMapping("Login")
+    /*@PostMapping("Login")
     public String succesfulLogin(@RequestParam String login) {
         userService.loadUserByUsername(login);
         return "/Login";
-    }
+    }*/
 }

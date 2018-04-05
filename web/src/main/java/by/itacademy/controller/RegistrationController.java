@@ -1,9 +1,9 @@
 package by.itacademy.controller;
 
+import by.itacademy.impl.AccountUserDTO;
 import by.itacademy.interfaces.UserService;
 import by.itacademy.entity.account.user.Language;
 import by.itacademy.exception.NotUniqueException;
-import by.itacademy.impl.AccountUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -29,13 +29,13 @@ public class RegistrationController {
     }
 
     @GetMapping("/registration")
-    public String showRegistrationPage(AccountUser accountUser) {
+    public String showRegistrationPage(AccountUserDTO accountUserDTO) {
         return "anonymous/Registration";
     }
 
     @ModelAttribute
-    public AccountUser accountUser() {
-        return new AccountUser();
+    public AccountUserDTO accountUser() {
+        return new AccountUserDTO();
     }
     @ModelAttribute("languageList")
     public Language[] language() {
@@ -43,7 +43,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String createNewUser(AccountUser user, Model model, @RequestParam String date) {
+    public String createNewUser(AccountUserDTO user, Model model, @RequestParam String date) {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setDateOfBirthday(LocalDate.parse(date));

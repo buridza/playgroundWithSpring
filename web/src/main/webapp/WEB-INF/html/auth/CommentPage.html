@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <th:block th:replace="fragments/header :: enableBoot"/>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<form action="/CommentPage" method="get" th:object="${filter}">
+    <input type="number" min="1" step="1" th:value="${filter.numberOfRows}" th:field="*{numberOfRows}">
+    <button th:if="${comments.hasPrevious()}"
+            type="submit" th:text="${comments.previousPageable().getPageNumber()}"
+            name="nextPage"
+            th:value="${comments.previousPageable().getPageNumber()}"
+            th:field="*{nextPage}"></button>
+    <button type="submit" th:text="${comments.getNumber()}" disabled></button>
+    <button th:if="${comments.hasNext()}"
+            type="submit" th:text="${comments.nextPageable().getPageNumber()}"
+            name="nextPage"
+            th:value="${comments.nextPageable().getPageNumber()}"
+            th:field="*{nextPage}"></button>
+</form>
+<table border="1">
+    <tr>
+        <th id="id">id</th>
+        <th id="game_name">game name</th>
+        <th id="message">mesasage</th>
+        <th id="rating">reting</th>
+        <th id="user_login">user login</th>
+        <th id="delete">delete</th>
+
+    </tr>
+    <tr th:each="comment: ${comments}">
+        <td th:text="${comment.id}"></td>
+        <td th:text="${comment.game.name}"></td>
+        <td th:text="${comment.message}"></td>
+        <td th:text="${comment.rating}"></td>
+        <td th:text="${comment.user.login}"></td>
+        <td>
+             <form action="/deleteComment" method="post">
+                 <input type="hidden" name="comment" th:value="${comment}">
+                 <input type="hidden" name="id" th:value="${comment.id}">
+                 <button th:if="${#strings.equalsIgnoreCase(#authorization.authentication.authorities, '[MODERATOR]')}">
+                     Удалить комментарий
+                 </button>
+                 <input type="hidden"
+                        th:name="${_csrf.parameterName}"
+                        th:value="${_csrf.token}"/>
+             </form>
+            <form action="/editComment" method="get" >
+                <input type="hidden" name="id" th:value="${comment.id}">
+                <!--<input type="hidden" name="comment" th:field="*{message}" th:value="${comment.message}">
+                <input type="hidden" name="comment" th:field="*{user}" th:value="${comment.user}">
+                <input type="hidden" name="comment" th:field="*{rating}" th:value="${comment.rating}">
+                <input type="hidden" name="comment" th:field="*{game}" th:value="${comment.game}">-->
+                <!--th:if="${#strings.equalsIgnoreCase(comment.getUser().login, #authorization.authentication.name)}"-->
+                <button >
+                    Редактировать
+                </button>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

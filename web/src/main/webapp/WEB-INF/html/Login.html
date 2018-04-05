@@ -7,13 +7,7 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
-1<ul th:each="err : ${#fields.allErrors()}">
-    <li th:value="err"></li>
-</ul>
-2<ul th:each="err : ${#fields.errors('*')}">
-    <li th:value="${err}"></li>
-</ul>
-<span th:text="${#fields.allErrors()}"></span>
+
 <form th:action="@{/customUrl}" method="post">
 
     <label th:for="login">Логин</label>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все пользователи</title>
+    <th:block th:replace="fragments/header :: enableBoot"/>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<form action="/AllUsers" method="get" th:object="${filter}">
+    <input type="number" min="1" step="1" th:value="*{numberOfRows}" th:field="*{numberOfRows}">
+    <span th:text="${entities.getTotalPages()}"></span>
+    <span th:text="${entities.getTotalElements()}"></span>
+
+    <button th:if="${entities.hasPrevious()}"
+            type="submit" th:text="${entities.previousPageable().getPageNumber()}"
+            name="nextPage"
+            th:value="${entities.previousPageable().getPageNumber()}"
+            th:field="*{nextPage}"></button>
+    <button type="submit" th:text="${entities.getNumber()}" disabled></button>
+    <button th:if="${entities.hasNext()}"
+            type="submit" th:text="${entities.nextPageable().getPageNumber()}"
+            name="nextPage"
+            th:value="${entities.nextPageable().getPageNumber()}"
+            th:field="*{nextPage}"></button>
+</form>
+<table border="1" th:each="entity: ${entities}">
+    <tr th:each="field: ${entity}">
+        <td th:text="${field}">
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>

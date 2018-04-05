@@ -1,39 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head >
+<head>
     <meta charset="UTF-8">
     <title>Title</title>
     <th:block th:fragment="enableBoot">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap-grid.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap-reboot.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap-grid.css.map">
+        <script src="/resources/js/bootstrap.js"></script>
+        <script src="/resources/js/bootstrap.bundle.js"></script>
+        <script src="/resources/js/bootstrap.bundle.js.map"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
     </th:block>
 
 </head>
 <body>
 <div th:fragment="header" th:align="center">
-    <nav>
-        <ul>
+    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+        <ul class="navbar-nav mr-auto">
             <!--!#strings.equalsIgnoreCase(#authentication.principal,'ROLE_ANONYMOUS')-->
-            <li th:if="${#authorization.expression('isAuthenticated()')}">
-                <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
-                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
-                </a>
-                <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+
+            <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                <a class="nav-link" href="UserPage" th:text="#{menu.personal}">Личный кабинет</a>
             </li>
-            <li th:if="${#authorization.expression('isAuthenticated()')}">
-                <a href="UserPage">Личный кабинет</a>
+            <li class="nav-item">
+                <a class="nav-link" href="firstPage" th:text="#{menu.games}">Игры</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="ProviderPage" th:text="#{menu.provider}">Поставщики</a>
+            </li>
+            <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                <a class="nav-link" href="/CommentPage" th:text="#{menu.comments}">Комментарии</a>
+            </li>
+            <li class="nav-item"
+                th:if="${#strings.equalsIgnoreCase(#authorization.authentication.authorities, '[MODERATOR]')}">
+                <a class="nav-link" href="Purchase" th:text="#{menu.orders}">Заказы</a>
+            </li>
+            <li class="nav-item"
+                th:if="${#strings.equalsIgnoreCase(#authorization.authentication.authorities, '[MODERATOR]')}">
+                <a class="nav-link" href="Admin" th:text="#{menu.admin}">Админка</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/" th:text="#{menu.home}">Домашняя</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-lg-auto ">
+            <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                <a class="nav-link" href="#" th:href="@{/logout}" th:text="#{menu.logout}">Log Out</a>
+            </li>
+            <li class="nav-item">
+                <span class="nav-link" th:text="#{local.lang}"></span>
             </li>
             <li>
-                <a href="firstPage">Игры</a>
+            <li class="nav-item"
+                th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                <a class="nav-link"
+                   th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('local', 'ru_RU').toUriString()}">РУС</a>
             </li>
-            <li>
-                <a href="ProviderPage">Поставщики</a>
+            <li class="nav-item"
+                th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+                <a class="nav-link"
+                   th:href="${urlBuilder.fromCurrentRequest().replaceQueryParam('local', 'en_EN').toUriString()}">ENG</a>
             </li>
-            <li th:if="${#strings.equalsIgnoreCase(#authorization.authentication.authorities, 'MODERATOR')}">
-                <a href="Purchase">Заказы</a>
-            </li>
-            <li th:if="${#strings.equalsIgnoreCase(#authorization.authentication.authorities, 'MODERATOR')}">
-                <a href="Admin">Админка</a>
-            </li>
+
         </ul>
     </nav>
 

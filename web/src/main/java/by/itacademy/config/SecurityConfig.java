@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/Login").anonymous()
                 .antMatchers("/Admin").hasAuthority("MODERATOR")
-                .antMatchers("/registration").permitAll()
+                .antMatchers("/registration", "/", "/firstPage").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -56,12 +56,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/firstPage")
+                //.logoutUrl("/logout")
+                //.permitAll()
+                .logoutSuccessUrl("/home")
                 .invalidateHttpSession(true)
-                .deleteCookies()
-                .and()
-                .csrf().disable();
+                .deleteCookies();
+               // .and()
+               // .csrf().disable();
     }
 
     @Override

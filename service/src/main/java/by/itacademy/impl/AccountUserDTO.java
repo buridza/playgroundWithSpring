@@ -8,10 +8,10 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class AccountUser {
+public class AccountUserDTO {
 
     private LocalDate dateOfBirthday;
-    private Role role=Role.USER;
+    private Role role = Role.USER;
     private Language language;
     private Address address;
     private String name;

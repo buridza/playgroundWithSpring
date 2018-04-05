@@ -6,6 +6,7 @@ import by.itacademy.entity.account.user.Role;
 import by.itacademy.entity.account.user.User;
 import by.itacademy.repository.GameRepository;
 import by.itacademy.repository.UserRepository;
+import org.hibernate.Session;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,16 @@ public class UserTest extends BaseTest {
     UserRepository userRepository;
     @Autowired
     GameRepository gameRepository;
+    @Test
+    public void optimistickLockExText() {
+        User one = userRepository.findOne(239L);
+        one.setName("verTest1");
+        userRepository.save(one);
+        one.setName("verTest2");
+        userRepository.save(one);
+
+
+    }
 
     @Test
     public void getUser() {

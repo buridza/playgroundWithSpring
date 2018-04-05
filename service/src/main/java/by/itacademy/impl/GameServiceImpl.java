@@ -69,6 +69,11 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Game getGameById(Serializable id) {
-        return gameRepository.findOne((Long)id);
+        return gameRepository.findOne((Long) id);
+    }
+
+    @Override
+    public Game addNewGame(Game game) {
+        return gameRepository.save(game);
     }
 }

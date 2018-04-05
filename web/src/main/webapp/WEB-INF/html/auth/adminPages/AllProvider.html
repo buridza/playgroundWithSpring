@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все поставщики</title>
+    <th:block th:replace="fragments/header :: enableBoot"/>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<form action="/AllProvider" method="get" th:object="${filter}">
+    <input type="number" min="1" step="1" th:value="*{numberOfRows}" th:field="*{numberOfRows}" >
+    <span th:text="${entities.getTotalPages()}"></span>
+    <span th:text="${entities.getTotalElements()}"></span>
+
+    <button th:if="${entities.hasPrevious()}"
+            type="submit" th:text="${entities.previousPageable().getPageNumber()}"
+            name="nextPage"
+            th:value="${entities.previousPageable().getPageNumber()}"
+            th:field="*{nextPage}"></button>
+    <button type="submit" th:text="${entities.getNumber()}" disabled></button>
+    <button th:if="${entities.hasNext()}"
+            type="submit" th:text="${entities.nextPageable().getPageNumber()}"
+            name="nextPage"
+            th:value="${entities.nextPageable().getPageNumber()}"
+            th:field="*{nextPage}"></button>
+</form>
+<table>
+    <tr th:each="entity: ${entities}">
+        <td th:text="${entity.name}"></td>
+        <td th:text="${entity.email}"></td>
+        <td th:text="${entity.login}"></td>
+        <td>
+            <form action="/EditProvider" method="get">
+                <input type="hidden" name="id" th:value="${entity.id}">
+                <input type="hidden" name="login" th:value="${entity.login}">
+                <button type="submit">Редактировать</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 
 @Controller
-@SessionAttributes({"user"})
+@SessionAttributes({"user", "filter"})
 public class UserController {
 
     private final UserService userService;
@@ -41,8 +41,7 @@ public class UserController {
 
     @GetMapping("UserPage")
     public String showUserPage() {
-
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+        //System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         return "auth/UserPage";
     }
 
@@ -52,20 +51,29 @@ public class UserController {
         return "/auth/UserPage";
     }
 
+    @GetMapping("InformationPage")
+    public String showInformationPage() {
+        return "auth/InformationPage";
+    }
+
     @GetMapping("edit")
     public String toEdit(Model model, User user) {
         model.addAttribute("user", user);
         return "auth/userConfigurePage";
     }
 
-    @PostMapping("edit/{id}")
-    public String edit(User user, @PathVariable Long id) {
+    @PostMapping("edit")
+    public String edit(User user/*, @PathVariable Long id*/) {
 
         System.out.println("i'm here");
         //User name = userService.saveUserByUserName(SecurityContextHolder.getContext().getAuthentication().getName(), user);
-        User name = userService.updateUserById(user, id);
+        User name = userService.updateUserById(user/*, id*/);
         System.out.println(name);
-        return "auth/UserPage";
+        return "redirect:UserPage";
     }
+   /* @GetMapping("local")
+    public String localChange(@RequestParam String local) {
+        return "redirect:" +
+    }*/
 
 }

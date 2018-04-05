@@ -5,6 +5,7 @@ import by.itacademy.entity.game.Game;
 import by.itacademy.impl.Filter;
 import by.itacademy.interfaces.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,7 @@ public class FirstPageController {
 
 
     @GetMapping("/filter")
+    @Cacheable("games")
     public String enableFilter(Filter filter) {
         return "auth/firstPage";
     }

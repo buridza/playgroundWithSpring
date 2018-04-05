@@ -8,36 +8,37 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 <div class="container">
-<table class="table table-bordered text-center table-hover" style="margin-top: 15%">
-    <tr>
-        <td id="name">Название</td>
-        <td id="rules">Правила</td>
-        <td id="cost">Стоимость</td>
-        <td id="age">Возрастное ограничение</td>
-        <td id="number">Количество игроков</td>
-        <td id="lang">Язык</td>
-        <td id="provider">Издатель</td>
-    </tr>
-    <tr>
-        <td th:text="${game.name}"></td>
-        <td th:text="${game.rules}"></td>
-        <td th:text="${game.cost}"></td>
-        <td th:text="${game.ageRestrictions}"></td>
-        <td th:text="${game.numberOfPlayers}"></td>
-        <td th:text="${game.language}"></td>
-        <td th:text="${game.provider.name}"></td>
+    <table class="table table-bordered text-center table-hover" style="margin-top: 15%">
+        <tr>
+            <td id="name">Название</td>
+            <td id="rules">Правила</td>
+            <td id="cost">Стоимость</td>
+            <td id="age">Возрастное ограничение</td>
+            <td id="number">Количество игроков</td>
+            <td id="lang">Язык</td>
+            <td id="provider">Издатель</td>
+        </tr>
+        <tr>
+            <td th:text="${game.name}"></td>
+            <td th:text="${game.rules}"></td>
+            <td th:text="${game.cost}"></td>
+            <td th:text="${game.ageRestrictions}"></td>
+            <td th:text="${game.numberOfPlayers}"></td>
+            <td th:text="${game.language}"></td>
+            <td th:text="${game.provider.name}"></td>
 
-    </tr>
-</table>
-<form class="form" action="UserPage" method="post">
-    <input type="hidden" th:value="${game.id}" name="id">
-    <input  type = "hidden"
-            th:name = "${_csrf.parameterName}"
-            th:value = "${_csrf.token}" />
-    <div class="text-center">
-    <button type="submit" class="btn btn-success text-center">Оплатить</button>
-    </div>
-</form>
+        </tr>
+    </table>
+    <form class="form" action="UserPage" method="post">
+        <input type="hidden" th:value="${game.id}" name="id">
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success text-center">Оплатить</button>
+        </div>
+        <input type="hidden"
+               th:name="${_csrf.parameterName}"
+               th:value="${_csrf.token}"/>
+    </form>
 </div>
 </body>
 </html>

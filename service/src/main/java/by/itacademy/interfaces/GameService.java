@@ -12,4 +12,6 @@ public interface GameService {
     public Page<Game> nextPageWithFilter(int page, int size, String name, int cost, int ageRest, Language language);
     public Page<Game> nextPageWithFilter(Filter filter);
     Game getGameById(Serializable id);
+
+    Game addNewGame(Game game);
 }

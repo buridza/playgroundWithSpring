@@ -11,7 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import java.util.List;
 import java.util.Random;
 
-public class CommentTest extends BaseTest{
+public class CommentTest extends BaseTest {
 
     @Autowired
     CommentRepository commentRepository;
@@ -26,7 +26,7 @@ public class CommentTest extends BaseTest{
     public void findAllCommentTest() {
         for (int i = 0; i < commentRepository.count(); i++) {
             commentRepository.findAll(new PageRequest(i, 5))
-                    .forEach(a-> System.out.println(a.getMessage()));
+                    .forEach(a -> System.out.println(a.getMessage()));
         }
     }
 
@@ -36,16 +36,18 @@ public class CommentTest extends BaseTest{
             createComment();
         }
     }
+
     @Test
     public void createComment() {
         Comment comment = new Comment();
         Random random = new Random();
-        comment.setMessage(random.nextBoolean()?"good":"bad"+" game");
+        comment.setMessage(random.nextBoolean() ? "good" : "bad" + " game");
         comment.setRating(random.nextInt(5));
-        comment.setUser(userRepository.findOne((long)random.nextInt(20)));
-        comment.setGame(gameRepository.findOne((long)random.nextInt(36)));
+        comment.setUser(userRepository.findOne((long) random.nextInt(20)));
+        comment.setGame(gameRepository.findOne((long) random.nextInt(36)));
         commentRepository.save(comment);
     }
+
     @Test
     public void getTest() {
         List<Comment> all = commentRepository.findAll();
@@ -56,4 +58,17 @@ public class CommentTest extends BaseTest{
         all.forEach(comment -> System.out.println(comment.getUser()));
 
     }
+
+    @Test
+    public void addRandomUserForComments() {
+
+        commentRepository.findAll().forEach(comment -> {
+                    comment.setUser(userRepository.findAll().get(new Random().nextInt(32)));
+                    commentRepository.save(comment); }
+        );
+
+
+    }
+
+
 }
